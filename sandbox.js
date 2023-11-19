@@ -75,9 +75,9 @@ pushRes = testArr.pop();
 // console.log(testArr);
 
 // Booleans & Comparisons
-let email = "test@gmail.com";
+// let email = "test@gmail.com";
 
-let resBool = email.includes("@");
+// let resBool = email.includes("@");
 // console.log(resBool);
 
 // Comparison Operators
@@ -398,12 +398,12 @@ const parChange = document.querySelector("p");
 // parChange.innerHTML = "Hello World! 2";
 
 
-const parChangeAll = document.querySelectorAll("p");
-parChangeAll.forEach((par, index) => {
-    if(index % 2 === 0){
-        par.innerHTML = "Hello World! ----- New -----";
-    }
-});
+// const parChangeAll = document.querySelectorAll("p");
+// parChangeAll.forEach((par, index) => {
+//     if(index % 2 === 0){
+//         par.innerHTML = "Hello World! ----- New -----";
+//     }
+// });
 
 // parChange.innerText = "Test";
 
@@ -414,12 +414,261 @@ parChangeAll.forEach((par, index) => {
 //     content.innerHTML += `<p>${name}</p>`;
 // });
 
-const link = document.querySelector("a");
+// const link = document.querySelector("a");
 
-link.setAttribute("href", "https://www.youtube.com");
-link.innerText = "Youtube";
+// link.setAttribute("href", "https://www.youtube.com");
+// link.innerText = "Youtube";
 
-page_title.style.margin = "25px 25px";
+// page_title.style.margin = "25px 25px";
 
-const par_1 = document.querySelector("p");
-par_1.classList.remove("errors");
+// const par_1 = document.querySelector("p");
+// par_1.classList.remove("errors");
+
+const pars_change = document.querySelectorAll("p");
+
+pars_change.forEach(par => {
+    if(par.textContent.includes("error")){
+        par.classList.add("error");
+    } else if(par.textContent.includes("success")) {
+        par.classList.add("success");
+    } else {
+        par.style.marginLeft = "30px";
+    }
+});
+
+
+
+//////////////////////////////////////////////////////////
+// Object Oriented 
+//////////////////////////////////////////////////////////
+
+// Switching from basic functions to object oriented functions
+
+// create user one
+// var userOneEmail = 'test1@gmail.com';
+// var userOneName = 'test1';
+// var userOneFriends = ['test2'];
+// var userOne = {
+//     email: 'test2@gmail.com',
+//     name: 'test2',
+//     friends: ['test1', 'test3'],
+// };
+
+// // create user two
+// // var userTwoEmail = 'test2@gmail.com';
+// // var userTwoName = 'test2';
+// // var userTwoFriends = ['test1', 'test3'];
+// var userTwo = {
+//     email: "test2@gmail.com",
+//     name: "test2",
+//     friends: ["test1", "test3"],
+// };
+
+// // create user three
+// // var userThreeEmail = 'test3@gmail.com';
+// // var userThreeName = 'test3';
+// // var userThreeFriends = ['test2'];
+// var userThree = {
+//     email: 'test3@gmail.com',
+//     name: 'test3',
+//     friends: ['test2'],
+// };
+
+// function login (email) {
+//     console.log(email, 'is now online');
+// }
+
+// function logout (email) {
+//     console.log(email, 'has logged out');
+// }
+
+// function logFriends (friends) {
+//     friends.forEach(friend => {
+//         console.log(friend, 'is now online');
+//     });
+// }
+
+// login(userOneEmail);
+// logFriends(userTwoFriends);
+
+// Classes
+class User {
+    /**
+     * Constructor function for creating a new instance of the object.
+     *
+     * @param {string} name - The name of the object.
+     * @param {string} email - The email of the object.
+     * @param {number} age - The age of the object.
+     * @param {number} score - The score of the object.
+     * @param {Array} friends - The friends of the object.
+     * @param {boolean} loginBool - The login boolean of the object.
+     * @param {boolean} logoutBool - The logout boolean of the object.
+     */
+
+    constructor(name, email, age){
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.friends = [];
+        this.loginBool = false;
+        this.logoutBool = false;
+        this.score = 0;
+    }
+
+    /**
+     * Logs the user in.
+     *
+     * @return {Object} - The current object.
+     */
+    login(){
+        if(this.loginBool){
+            console.log(`${this.name} is already logged in`);
+            return this;
+        }
+        console.log(`${this.name} has logged in`);
+        this.loginBool = true;
+        return this;
+    }
+
+    /**
+     * Logs out the user.
+     *
+     * @return {object} This object for chaining.
+     */
+    logout(){
+        if(!this.loginBool){
+            console.log(`${this.name} is not logged in`);
+            return this;
+        }
+        console.log(`${this.name} has logged out`);
+        this.logoutBool = true;
+        return this;
+    }
+
+    /**
+     * Updates the score based on login status.
+     *
+     * @return {Object} - The instance of the object.
+     */
+    updateScore(){
+        if(this.loginBool){
+            this.score++;
+            console.log(`${this.name} has a score of ${this.score}`);
+            return this;
+        }else{
+            console.log(`${this.name} is not logged in`);
+            return this;
+        }
+    }
+
+    /**
+     * Adds a friend to the friends list.
+     *
+     * @param {Object} friend - The friend object to be added.
+     * @return {undefined} No return value.
+     */
+    addFriend(friend){
+        this.friends.push(friend);
+        console.log(`${friend.name} has been added to ${this.name}'s friends list`);
+    }
+
+    /**
+     * Removes a friend from the friends list.
+     *
+     * @param {Object} friend - The friend to be removed.
+     * @return {undefined} - This function does not return a value.
+     */
+    removeFriend(friend){
+        let index = this.friends.indexOf(friend);
+        if(index === -1){
+            console.log(`${friend.name} is not in ${this.name}'s friends list`);
+            return;
+        } else {
+            this.friends.splice(index, 1);
+            console.log(`${friend.name} has been removed from ${this.name}'s friends list`);
+        }  
+    }
+}
+class Admin extends User {
+    constructor(name, email, age, score, friends, loginBool, logoutBool){
+        super(name, email, age, score, friends, loginBool, logoutBool);
+        this.users = [];
+    }
+
+    addUser(user){
+        this.users.push(user);
+        console.log(`${user.name} has been added to the admin`);
+    }
+
+    deleteUser(user){
+        this.users = this.users.filter(u => {
+            return u.email !== user.email;
+        })
+    }
+
+    // deleteUser(user){
+    //     let index = this.users.indexOf(user);
+    //     if(index === -1){
+    //         console.log(`${user.name} is not in the admin`);
+    //         return;
+    //     }else{
+    //         this.users.splice(index, 1);
+    //         console.log(`${user.name} has been removed from the admin`);
+    //     }
+    // }
+}
+
+var userOne = new User("test1", "test1@gmail.com", 24);
+var userTwo = new User("test2", "test2@gmail.com", 26);
+var userThree = new User("test3", "test3@gmail.com", 28);
+
+// console.log(userOne.email);
+// userOne.login();
+// userOne.logout();
+// userOne.addFriend(userTwo);
+// userOne.addFriend(userThree);
+// userOne.removeFriend(userTwo);
+// console.log(userOne.friends);
+
+// userOne.updateScore();
+var admin = new Admin("admin1", "admin1@gmail.com", 24);
+// admin.addUser(userOne);
+// admin.addUser(userTwo);
+// admin.addUser(userThree);
+// admin.deleteUser(userOne);
+// admin.deleteUser(userTwo);
+
+// console.log(admin.name);
+// console.log(admin.users);
+// admin.login();
+
+function User2(name, email){
+    this.name = name;
+    this.email = email;
+    // this.login = function(){
+    //     console.log(`${this.name} has logged in`);
+    // }
+}
+User2.prototype.login = function(){
+    console.log(`${this.name} has logged in`);
+}
+
+function Admin2(...args){
+    User2.apply(this, args);
+    this.role = "admin";
+}
+
+Admin2.prototype = Object.create(User2.prototype);
+
+Admin2.prototype.deleteUser = function(user){
+    console.log(`${user.name} has been deleted`);
+}
+
+var testUser = new User2("test", "test@gmail");
+console.log(testUser);
+
+var testAdmin = new Admin2("admin", "admin@gmail");
+console.log(testAdmin);
+
+testUser.login();
+console.log(testUser.name); 
