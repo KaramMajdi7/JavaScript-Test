@@ -664,11 +664,66 @@ Admin2.prototype.deleteUser = function(user){
     console.log(`${user.name} has been deleted`);
 }
 
-var testUser = new User2("test", "test@gmail");
-console.log(testUser);
+// var testUser = new User2("test", "test@gmail");
+// console.log(testUser);
 
-var testAdmin = new Admin2("admin", "admin@gmail");
-console.log(testAdmin);
+// var testAdmin = new Admin2("admin", "admin@gmail");
+// console.log(testAdmin);
 
-testUser.login();
-console.log(testUser.name); 
+// testUser.login();
+// console.log(testUser.name);
+
+///////////////////////////////////////////////////
+// Test
+///////////////////////////////////////////////////
+
+// var items = document.querySelectorAll("li");
+
+// items.forEach( e => {
+//     e.onclick = function(){
+//         console.log(e.innerHTML);
+//     }
+// });
+
+var arr_2 = ["test", "test2", "test3"];
+// console.log(...arr_2);
+
+var nums1 = [1, 2, 3];
+var nums2 = [4, 5, 6];
+var nums3 = [...nums1, ...nums2];
+
+// console.log(nums3);
+
+var timer = {
+    name: "Karam",
+    display(x){
+        window.setInterval(() => {
+            console.log(this.name, x);
+        }, 1000);
+    }
+}
+// timer.display(5);
+
+
+var names = new Set();
+names.add("test1").add("test2").add("test3");
+names.delete("test2");
+
+// console.log(names.size);
+// console.log(names.has("test1"));
+// console.log(names);
+
+function* gen(){
+    var x = yield "Hello World! 1";
+    var y = yield "Hello World! 2";
+    var z = yield "Hello World! 3";
+    return x + y + z;
+}
+
+var myGen = gen();
+
+console.log(myGen.next());
+console.log(myGen.next(3));
+console.log(myGen.next(3));
+console.log(myGen.next(3));
+
