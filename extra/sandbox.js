@@ -726,4 +726,3 @@ console.log(myGen.next());
 console.log(myGen.next(3));
 console.log(myGen.next(3));
 console.log(myGen.next(3));
-
